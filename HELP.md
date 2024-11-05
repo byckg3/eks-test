@@ -22,3 +22,7 @@
 ### aws cli commands
 - aws eks --region ap-northeast-1 update-kubeconfig \\\
   --name $(terraform output -raw cluster_name)
+
+
+### references
+- [Provision an EKS cluster (AWS)](https://developer.hashicorp.com/terraform/tutorials/kubernetes/eks)
