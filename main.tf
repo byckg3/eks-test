@@ -24,14 +24,14 @@ module "eks" {
   }
 
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.small"]
+    instance_types = ["t2.micro"] # max 4 pods
   }
 
   eks_managed_node_groups = {
     group1 = {
       name = "node-group-1"
 
-      instance_types = ["t2.micro"]
+      instance_types = ["t3.small"] # max 11 pods
 
       min_size     = 1
       max_size     = 3

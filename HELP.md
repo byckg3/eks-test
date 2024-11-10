@@ -1,10 +1,23 @@
-# k8s-test
+# eks-test
+
+
+### terraform commands
+- terraform init
+- terraform fmt
+- terraform plan
+- terraform apply
+- terraform destroy -auto-approve
+
+
+### aws cli commands
+- aws eks --region ap-northeast-1 update-kubeconfig \\\
+  --name $(terraform output -raw cluster_name)
+
 
 ### k8s commands
 - kubectl cluster-info
 - kubectl get no( nodes )
 - kubectl get po( pods )
-- kubectl describe po <PO_NAME>
 - kubectl get svc( services )
 - kubectl get deploy( deployments )
 - kubectl delete all --all
@@ -12,16 +25,11 @@
 - kubectl apply -f .
 - kubectl rollout status deploy
 - rm *.yaml
-
-### terraform commands
-- terraform init
-- terraform fmt
-- terraform destroy -auto-approve
+- kubectl describe pod <POD_NAME>
+- kubectl port-forward <POD_NAME> <LOCALHOST_PORT>:<CONTAINER_PORT>
+- kubectl exec -it <POD_NAME> /bin/sh
 
 
-### aws cli commands
-- aws eks --region ap-northeast-1 update-kubeconfig \\\
-  --name $(terraform output -raw cluster_name)
 
 
 ### references
