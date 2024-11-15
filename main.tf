@@ -17,10 +17,10 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
   cluster_addons = {
-    coredns                = {}
-    eks-pod-identity-agent = {}
-    kube-proxy             = {}
-    vpc-cni                = {}
+    coredns                = { most_recent = true }
+    eks-pod-identity-agent = { most_recent = true }
+    kube-proxy             = { most_recent = true }
+    vpc-cni                = { most_recent = true }
   }
 
   eks_managed_node_group_defaults = {
@@ -55,5 +55,11 @@ module "eks" {
         }
       }
     }
+  }
+}
+
+resource "null_resource" "update_kubeconfig" {
+  provisioner "local-exec" {
+    command = "aws eks --region ${var.aws_region} update-kubeconfig --name ${module.eks.cluster_name}"
   }
 }
